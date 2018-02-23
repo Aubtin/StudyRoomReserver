@@ -1,0 +1,29 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.aubtin.studyroomreserver.Activities.MainActivity">
+
+    <item
+        android:id="@+id/action_changeName"
+        android:orderInCategory="99"
+        android:title="Change Name"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_changeStudentSchoolID"
+        android:orderInCategory="99"
+        android:title="Change Student ID"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_changeStudentEmail"
+        android:orderInCategory="99"
+        android:title="Change Student Email"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_logout"
+        android:orderInCategory="100"
+        android:title="Logout"
+        app:showAsAction="never" />
+</menu>
