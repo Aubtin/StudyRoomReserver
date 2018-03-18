@@ -32,10 +32,6 @@ import java.util.Map;
 public class RequestedRoomAdapter extends RecyclerView.Adapter<RequestedRoomAdapter.ViewHolder> {
     private List<RequestedRooms> requestedRoomsTemp;
     RequestAdapterListeners clickListener;
-    //Pass in constructor when needed for clicks.
-//    public interface RequestedRoomsAdapterListener {
-//
-//    }
 
     public interface RequestAdapterListeners {
         void clickedItemRequest(int position);

@@ -31,10 +31,6 @@ public class ReservedRoomAdapter extends RecyclerView.Adapter<ReservedRoomAdapte
     public interface ReservedAdapterListeners {
         void clickedItemReserved(int position);
     }
-    //Pass in constructor when needed for clicks.
-//    public interface RequestedRoomsAdapterListener {
-//
-//    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
@@ -81,10 +77,8 @@ public class ReservedRoomAdapter extends RecyclerView.Adapter<ReservedRoomAdapte
             holder.assignedToTV.setVisibility(View.INVISIBLE);
 
             //Check if it's in the current time block.
-//            DateTimeZone timeZone = DateTimeZone.getDefault();
             DateTime now = new DateTime(new Date(currentRoom.getStartEpochTime()));
             Interval currentBlock = new Interval(now, now.plusMinutes(30));
-//            Date epochDate = new Date(currentRoom.getStartEpochTime()); // *1000 is to convert seconds to milliseconds
             DateTime dateTime = new DateTime();
 
             if(currentBlock.contains(dateTime)) {

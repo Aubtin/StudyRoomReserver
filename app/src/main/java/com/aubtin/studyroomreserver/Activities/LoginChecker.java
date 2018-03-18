@@ -29,7 +29,6 @@ public class LoginChecker extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//                Log.i("Email", "EMAIL: " + FirebaseAuth.getInstance().getCurrentUser().getEmail());
                 if(user !=  null)
                 {
                     Intent activityStarter = new Intent(LoginChecker.this, MainActivity.class);

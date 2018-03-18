@@ -49,6 +49,7 @@ public class GmailOpener extends AppCompatActivity {
         emailView.getSettings().setJavaScriptEnabled(true);
         emailView.loadUrl("http://www.gmail.com");
 
+        //Throwaway email account.
         emailView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView wv, String url) {
