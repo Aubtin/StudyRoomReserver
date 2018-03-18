@@ -154,7 +154,6 @@ public class RequestRoomActivity extends AppCompatActivity {
         int preferredRoom = roomPreference.getSelectedItemPosition() - 1;
 
         //Send to server.
-
         String pushkey = groupRequest.push().getKey();
         RequestedRooms request = new RequestedRooms(pushkey, dayPicked, startTimePicked, endTimePicked, preferredRoom, FirebaseAuth.getInstance().getCurrentUser().getUid(), FirebaseAuth.getInstance().getCurrentUser().getDisplayName(),
                 users.get(userAssignPicked).getUserUID(), users.get(userAssignPicked).getName());

@@ -145,10 +145,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                             NdefRecord firstRecord = records[0];
                             byte[] payloadData = firstRecord.getPayload();
 
-                            // do something with the payload (data passed through your NDEF record)
-                            // or process remaining NDEF message
-//                            Toast.makeText(MainActivity.this, user.getDisplayName() + " has checked into " +
-//                                    "Room " + new String(payloadData), Toast.LENGTH_LONG).show();
+                            //Process NFC.
                             String pushkey = groupDatabaseNFCManager.push().getKey();
                             CheckedInUser request = new CheckedInUser(FirebaseAuth.getInstance().getCurrentUser().getDisplayName(), new String(payloadData));
                             groupDatabaseNFCManager.child(pushkey).setValue(request);
@@ -165,14 +162,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 currentUser = dataSnapshot.getValue(User.class);
-
-//                if(currentUser == null || currentUser.getSchoolUserID() == null || currentUser.getSchoolUserID().equals("") || currentUser.getSchoolEmail() == null || currentUser.getSchoolEmail().equals(""))
-//                {
-//                    new SchoolUserIDDialogFragments().show(getSupportFragmentManager(), "schooluseridDialogFragment");
-//                }
-//                else
-//                    FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).
-//                            setValue(currentUser);
             }
 
             @Override
@@ -287,91 +276,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
             }
         });
-//        roomReservedListener = groupDatabase.child("reserved").addChildEventListener(new ChildEventListener() {
-//            @Override
-//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-//                Log.d(TAG, "SOMETHING ADDED" );
-//                for (DataSnapshot dataSnapshotChild : dataSnapshot.getChildren()) {
-//                    reservedRoomsList.add(new ReservedRooms(Long.parseLong(dataSnapshotChild.getKey()), dataSnapshotChild.getValue(String.class)));
-//                    if (reservedRoomsList.size() > 0) {
-//                        Collections.sort(reservedRoomsList, new Comparator<ReservedRooms>() {
-//                            public int compare(ReservedRooms o1, ReservedRooms o2) {
-//                                return (o1.getStartEpochTimeString().compareTo(o2.getStartEpochTimeString()));
-//                            }
-//                        });
-//
-//                        reservedRoomsNoneTV.setVisibility(View.GONE);
-//                        reservedRoomsRecycler.setVisibility(View.VISIBLE);
-//                    }
-//                    reservedRoomAdapter.notifyDataSetChanged();
-//                }
-//            }
-//
-//            @Override
-//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-//                Log.d(TAG, dataSnapshot.getKey() + "CHANGED COUNT: " + dataSnapshot.getChildrenCount());
-//                Log.d(TAG, "PARENT: " + dataSnapshot.getKey());
-//
-//                for (DataSnapshot dataSnapshotChild : dataSnapshot.getChildren()) {
-//                    Log.d(TAG, "CHILD: " + dataSnapshotChild.getKey());
-//                    for (int x = 0; x < reservedRoomsList.size(); x++) {
-//                        if (dataSnapshotChild.getKey().equals(reservedRoomsList.get(x).getStartEpochTimeString()))
-//                            reservedRoomsList.remove(x);
-//                    }
-//                    reservedRoomsList.add(new ReservedRooms(Long.parseLong(dataSnapshotChild.getKey()), dataSnapshotChild.getValue(String.class)));
-//                    if (reservedRoomsList.size() > 0) {
-//                        Collections.sort(reservedRoomsList, new Comparator<ReservedRooms>() {
-//                            public int compare(ReservedRooms o1, ReservedRooms o2) {
-//                                return (o1.getStartEpochTimeString().compareTo(o2.getStartEpochTimeString()));
-//                            }
-//                        });
-//
-//                        reservedRoomsNoneTV.setVisibility(View.GONE);
-//                        reservedRoomsRecycler.setVisibility(View.VISIBLE);
-//                    }
-//                    reservedRoomAdapter.notifyDataSetChanged();
-//                }
-//            }
-//
-//            @Override
-//            public void onChildRemoved(DataSnapshot dataSnapshot) {
-//                Log.d(TAG, dataSnapshot.getKey() + "CHANGED COUNT: " + dataSnapshot.getChildrenCount());
-////                if(dataSnapshot.getChildrenCount() > 1) {
-//                    for (DataSnapshot dataSnapshotChild : dataSnapshot.getChildren()) {
-//                        for (int x = 0; x < reservedRoomsList.size(); x++) {
-//                            if (dataSnapshotChild.getKey().equals(reservedRoomsList.get(x).getStartEpochTimeString())) {
-//                                reservedRoomsList.remove(x);
-//                                reservedRoomAdapter.notifyDataSetChanged();
-//                            }
-//                        }
-//                    }
-////                }
-////                else
-////                {
-////                    for (int x = 0; x <= reservedRoomsList.size(); x++) {
-////                        if (dataSnapshot.getKey().equals(reservedRoomsList.get(x).getStartEpochTimeString())) {
-////                            reservedRoomsList.remove(x);
-////                            reservedRoomAdapter.notifyDataSetChanged();
-////                        }
-////                    }
-////                }
-//
-//                if(!dataSnapshot.exists() || reservedRoomsList.size() == 0) {
-//                    reservedRoomsNoneTV.setVisibility(View.VISIBLE);
-//                    reservedRoomsRecycler.setVisibility(View.GONE);
-//                }
-//            }
-//
-//            @Override
-//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
 
         roomTimeRequestListener = groupDatabase.child("requested").addChildEventListener(new ChildEventListener() {
             @Override
@@ -386,8 +290,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 }
                 requestedRoomAdapter.notifyDataSetChanged();
 
-//                requestedRoomsTV.setText(requestedRoomsTV.getText() + "\t- " + requestedRooms.getReadableDay(requestedRooms.getDay()) + " between " + requestedRooms.getReadableTime(requestedRooms.getStartTime()) + " and "
-//                        + requestedRooms.getReadableTime(requestedRooms.getEndTime()) + " (" + requestedRooms.getReservedByName() + ").\n");
             }
 
             @Override
@@ -425,35 +327,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             }
         });
 
-//        roomTimeRequestListener = groupDatabase.child("requested").addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                GenericTypeIndicator<List<RequestedRooms>> genericTypeIndicator =new GenericTypeIndicator<List<RequestedRooms>>(){};
-
-//                requestedRoomsList = dataSnapshot.getValue(List.class);
-//                Iterable<DataSnapshot> returns = dataSnapshot.getChildren();
-//
-//                while(returns.iterator().hasNext())
-//                {
-//                    RequestedRooms requestedRooms = returns.iterator().next().getValue(RequestedRooms.class);
-//                    requestedRoomsList.add(requestedRooms);
-
-//                for(int x = 0; x < requestedRoomsList.size(); x++)
-//                {
-//                    RequestedRooms requestedRooms = requestedRoomsList.get(x);
-//                    requestedRoomsTV.setText("\t- " + requestedRooms.getReadableDay(requestedRooms.getDay()) + " between " + requestedRooms.getReadableTime(requestedRooms.getStartTime()) + " and "
-//                            + requestedRooms.getReadableTime(requestedRooms.getEndTime()) + " (" + requestedRooms.getReservedByName() + ").\n");
-//                }
-
-//                }
-//            }
-
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
-
         DatabaseReference connectedRef = FirebaseDatabase.getInstance().getReference(".info/connected");
         connectedRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -485,20 +358,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 System.err.println("Listener was cancelled");
             }
         });
-
-//        Log.d(TAG, "Start token refresh.");
-//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser(); // mAuth is your current firebase auth instance
-//        user.getToken(true).addOnCompleteListener(this, new OnCompleteListener<GetTokenResult>() {
-//            @Override
-//            public void onComplete(@NonNull Task<GetTokenResult> task) {
-//                Log.d(TAG, "Completed refresh token.");
-//                if (task.isSuccessful()) {
-//                    Log.d(TAG, "token=" + task.getResult().getToken());
-//                } else {
-//                    Log.e(TAG, "exception=" +task.getException().toString());
-//                }
-//            }
-//        });
     }
 
     @Override
@@ -583,9 +442,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             new SchoolUserIDDialogFragments().show(getSupportFragmentManager(), "schooluseridDialogFragment");
         else {
             currentUser.setSchoolUserID(schoolID);
-// new User(FirebaseAuth.getInstance().getCurrentUser().getUid(), FirebaseAuth.getInstance().getCurrentUser().getDisplayName(),
-//                    FirebaseAuth.getInstance().getCurrentUser().getEmail(), schoolID);
-
             FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).
                     setValue(currentUser);
 

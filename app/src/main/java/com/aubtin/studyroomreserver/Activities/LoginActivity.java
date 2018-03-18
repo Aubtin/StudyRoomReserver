@@ -84,28 +84,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         mFirebaseAuth = FirebaseAuth.getInstance();
         mContext = this;
 
-        //Deal with a login state change.
-//        mAuthListener = new FirebaseAuth.AuthStateListener() {
-//            @Override
-//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-//                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-////                Log.i("Email", "EMAIL: " + FirebaseAuth.getInstance().getCurrentUser().getEmail());
-//                if(user !=  null)
-//                {
-//                    Intent activityStarter = new Intent(LoginActivity.this, MainActivity.class);
-//                    activityStarter.setFlags(FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                    startActivity(activityStarter);
-//                }
-//                else
-//                {
-//                    Intent activityStarter = new Intent(LoginActivity.this, IntroActivity.class);
-//                    activityStarter.setFlags(FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                    startActivity(activityStarter);
-//                }
-//
-//            }
-//        };
-
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.google_server_client_id))
@@ -322,20 +300,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         Log.d(TAG, "signInGoogle() called.");
         startActivityForResult(signInIntent, RC_SIGN_IN_GOOGLE);
     }
-
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        mFirebaseAuth.addAuthStateListener(mAuthListener);
-//    }
-//
-//    @Override
-//    public void onStop() {
-//        super.onStop();
-//        if (mAuthListener != null) {
-//            mFirebaseAuth.removeAuthStateListener(mAuthListener);
-//        }
-//    }
 
     @Override
     public void onClick(View view) {
