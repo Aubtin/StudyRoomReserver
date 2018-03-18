@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-***REMOVED***
+<resources>
     <string-array name="days">
         <item>Select Day</item>
         <item>Monday</item>
@@ -49,4 +49,4 @@
         <item>200G</item>
         <item>100E</item>
     </string-array>
-***REMOVED***
+</resources>
