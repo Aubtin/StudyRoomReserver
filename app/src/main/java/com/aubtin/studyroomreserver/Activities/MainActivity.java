@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
     //Firebase
     private FirebaseAuth mFirebaseAuth;
-            private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference userDatabase;
     private DatabaseReference groupDatabase;
     private DatabaseReference groupDatabaseNFCManager;
